@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.hoteleveris.app.model.TipoQuarto;
 
-public class ListTipoQuartoResponse extends BaseResponse{
+public class ListTipoQuartoResponse extends BaseResponse {
 
 	private List<TipoQuarto> tipoQuarto;
 
@@ -15,6 +15,5 @@ public class ListTipoQuartoResponse extends BaseResponse{
 	public void setTipoQuarto(List<TipoQuarto> tipoQuarto) {
 		this.tipoQuarto = tipoQuarto;
 	}
-	
-	
+
 }
