@@ -15,7 +15,7 @@ public class TipoQuartoController extends BaseController {
 	@Autowired
 	TipoQuartoService _service;
 
-	// POST - CRIAR UM CLIENTE
+	// POST - CRIAR UM TIPO DE QUARTO
 	@PostMapping
 	public ResponseEntity<BaseResponse> criar(@RequestBody TipoQuartoRequest request) {
 		try {
@@ -26,7 +26,7 @@ public class TipoQuartoController extends BaseController {
 		}
 	}
 
-	// GET - OBTER POR ID
+	// GET - OBTER UM TIPO DE QUARTO POR POR ID
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<BaseResponse> obter(@PathVariable Long id) {
 		try {
@@ -37,7 +37,7 @@ public class TipoQuartoController extends BaseController {
 		}
 	}
 
-	// GET - OBTER TUDO
+	// GET - OBTER TODOS OS TIPOS DE QUARTO
 	@GetMapping
 	public ResponseEntity<BaseResponse> listar() {
 		try {

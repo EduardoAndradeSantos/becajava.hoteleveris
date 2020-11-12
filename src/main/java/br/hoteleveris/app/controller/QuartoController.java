@@ -4,20 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import br.hoteleveris.app.request.ClienteRequest;
+import br.hoteleveris.app.request.QuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
-import br.hoteleveris.app.service.ClienteService;
+import br.hoteleveris.app.service.QuartoService;
 
 @RestController
-@RequestMapping("/clientes")
-public class ClienteController extends BaseController {
-
+@RequestMapping("/quartos")
+public class QuartoController extends BaseController{
+	
 	@Autowired
-	ClienteService _service;
-
-	// POST - CRIAR UM CLIENTE
+	QuartoService _service;
+	
+	// POST - INSERIR UM QUARTO
 	@PostMapping
-	public ResponseEntity<BaseResponse> criar(@RequestBody ClienteRequest request) {
+	public ResponseEntity<BaseResponse> criar(@RequestBody QuartoRequest request) {
 		try {
 			BaseResponse response = _service.criar(request);
 			return ResponseEntity.status(response.statusCode).body(response);
@@ -25,8 +25,8 @@ public class ClienteController extends BaseController {
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 		}
 	}
-
-	// GET - OBTER POR ID
+	
+	// GET - OBTER UM QUARTO
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<BaseResponse> obter(@PathVariable Long id) {
 		try {
@@ -36,5 +36,18 @@ public class ClienteController extends BaseController {
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 		}
 	}
+	
+//	// GET - OBTER LISTA DE TODOS OS QUARTOS
+//		@GetMapping
+//		public ResponseEntity<BaseResponse> listar() {
+//			try {
+//				BaseResponse response = _service.listar();
+//				return ResponseEntity.status(response.statusCode).body(response);
+//			} catch (Exception e) {
+//				return ResponseEntity.status(errorBase.statusCode).body(errorBase);
+//			}
+//		}
+//		
+//	 ATUALIZAR APENAS SITUAÇÃO DO QUARTO (utilizar o verbo PATCH do Rest)
 
 }
