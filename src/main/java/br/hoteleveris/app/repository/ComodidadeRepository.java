@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.hoteleveris.app.model.Comodidade;
 
 @Repository
-public interface ComodidadeRespository extends JpaRepository<Comodidade, Long> {
+public interface ComodidadeRepository extends JpaRepository<Comodidade, Long> {
 
 }
