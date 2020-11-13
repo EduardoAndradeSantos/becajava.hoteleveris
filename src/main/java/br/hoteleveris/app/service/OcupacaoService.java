@@ -1,5 +1,7 @@
 package br.hoteleveris.app.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import br.hoteleveris.app.model.Quarto;
 import br.hoteleveris.app.repository.OcupacaoRepository;
 import br.hoteleveris.app.request.OcupacaoRequest;
 import br.hoteleveris.app.response.BaseResponse;
+import br.hoteleveris.app.response.ListOcupacaoResponse;
 
 @Service
 public class OcupacaoService {
@@ -20,7 +23,7 @@ public class OcupacaoService {
 	public BaseResponse criar(OcupacaoRequest request) {
 		BaseResponse response = new BaseResponse();
 		response.statusCode = 400;
-	
+
 		if (request.getData().isEmpty()) {
 			response.message = "Data não pode ser vazia";
 			return response;
@@ -38,7 +41,7 @@ public class OcupacaoService {
 		Ocupacao ocupa = new Ocupacao();
 		ocupa.setData(request.getData());
 		ocupa.setDiaria(request.getDiaria());
-		
+
 		ocupa.setSituacaoPagamento(request.getSituacaoPagamento());
 		if (ocupa.getSituacaoPagamento().isEmpty()) {
 			ocupa.setSituacaoPagamento("N");
@@ -58,6 +61,19 @@ public class OcupacaoService {
 
 		response.message = "Tipo de quarto criado com sucesso!";
 		response.statusCode = 200;
+
+		return response;
+	}
+
+	// OBTER TODOS OS TIPOS DE QUARTO
+	public ListOcupacaoResponse listar() {
+
+		List<Ocupacao> lista = _repository.findAll();
+
+		ListOcupacaoResponse response = new ListOcupacaoResponse();
+		response.setOcupacoes(lista);
+		response.statusCode = 200;
+		response.message = "Clientes obtidos com sucesso.";
 
 		return response;
 	}
