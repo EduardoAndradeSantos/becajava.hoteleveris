@@ -21,8 +21,6 @@ public class QuartoService {
 
 	@Autowired
 	QuartoRepository _repository;
-//	@Autowired
-//	ComodidadeRepository _tipoquartorepository;
 
 	// INSERIR UM QUARTO (FUNCIONA, MAS FALTA COMODIDADES)
 	public BaseResponse criar(QuartoRequest request) {
@@ -50,7 +48,7 @@ public class QuartoService {
 		obj.setId(request.getIdTipoQuarto());
 		quarto.setTipoQuarto(obj);
 
-		// colocar id em um ManyToOne
+		// colocar id em um ManyToOne PROBLEMA POR SER LISTA
 //		Comodidade obj2 = new Comodidade();
 //		obj2.setId(request.getIdComodidade());
 //		quarto.setComodidade(obj2);
@@ -86,17 +84,18 @@ public class QuartoService {
 		return response;
 	}
 
-	// OBTER LISTA DE QUARTOS (FUNCIONA, MAS FALTA COISA)
-	public ListQuartoResponse listar() {
-
-		List<Quarto> lista = _repository.findAll();
+	// OBTER LISTA DE IDs POR TIPO DE QUARTO
+	public ListQuartoResponse listar(Long id) {
 
 		ListQuartoResponse response = new ListQuartoResponse();
-		response.setQuarto(lista);
+		List<Quarto> lista = _repository.findBuscarQuartos(id);
+
+		response.setQuartos(lista);
 		response.statusCode = 200;
 		response.message = "Quartos obtidos com sucesso.";
 
 		return response;
 	}
+
+	// ATUALIZAR APENAS SITUAÇÃO DO QUARTO (utilizar o verbo PATCH do Rest)
 }
-// ATUALIZAR APENAS SITUAÇÃO DO QUARTO (utilizar o verbo PATCH do Rest)

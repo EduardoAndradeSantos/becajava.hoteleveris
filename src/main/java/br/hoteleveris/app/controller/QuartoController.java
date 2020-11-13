@@ -10,11 +10,11 @@ import br.hoteleveris.app.service.QuartoService;
 
 @RestController
 @RequestMapping("/quartos")
-public class QuartoController extends BaseController{
-	
+public class QuartoController extends BaseController {
+
 	@Autowired
 	QuartoService _service;
-	
+
 	// POST - INSERIR UM QUARTO
 	@PostMapping
 	public ResponseEntity<BaseResponse> criar(@RequestBody QuartoRequest request) {
@@ -25,7 +25,7 @@ public class QuartoController extends BaseController{
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 		}
 	}
-	
+
 	// GET - OBTER UM QUARTO
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<BaseResponse> obter(@PathVariable Long id) {
@@ -36,18 +36,18 @@ public class QuartoController extends BaseController{
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 		}
 	}
-	
-	// GET - OBTER LISTA DE TODOS OS QUARTOS
-		@GetMapping
-		public ResponseEntity<BaseResponse> listar() {
-			try {
-				BaseResponse response = _service.listar();
-				return ResponseEntity.status(response.statusCode).body(response);
-			} catch (Exception e) {
-				return ResponseEntity.status(errorBase.statusCode).body(errorBase);
-			}
+
+	// GET - OBTER LISTA DE IDs POR TIPO DE QUARTO
+	@GetMapping(path = "/tipo/{id}")
+	public ResponseEntity<BaseResponse> listar(@PathVariable Long id) {
+		try {
+			BaseResponse response = _service.listar(id);
+			return ResponseEntity.status(response.statusCode).body(response);
+		} catch (Exception e) {
+			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 		}
-		
+	}
+
 //	 ATUALIZAR APENAS SITUAÇÃO DO QUARTO (utilizar o verbo PATCH do Rest)
 
 }
