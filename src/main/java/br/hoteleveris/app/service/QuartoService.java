@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import br.hoteleveris.app.model.Comodidade;
 import br.hoteleveris.app.model.Quarto;
 import br.hoteleveris.app.model.TipoQuarto;
 
@@ -48,8 +50,10 @@ public class QuartoService {
 		obj.setId(request.getIdTipoQuarto());
 		quarto.setTipoQuarto(obj);
 
-//		// pegar id de comodidade da many to many
-//		quarto.setComodidade(request.getComodidade());
+		// colocar id em um ManyToOne
+//		Comodidade obj2 = new Comodidade();
+//		obj2.setId(request.getIdComodidade());
+//		quarto.setComodidade(obj2);
 
 		_repository.save(quarto);
 
