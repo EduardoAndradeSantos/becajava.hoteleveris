@@ -5,6 +5,7 @@ public class QuartoRequest {
 	private int numero;
 	private String situacao;
 	private Long idTipoQuarto;
+//	private Long idComodidade;
 
 	public int getAndar() {
 		return andar;
@@ -37,5 +38,13 @@ public class QuartoRequest {
 	public void setIdTipoQuarto(Long idTipoQuarto) {
 		this.idTipoQuarto = idTipoQuarto;
 	}
+
+//	public Long getIdComodidade() {
+//		return idComodidade;
+//	}
+//
+//	public void setIdComodidade(Long idComodidade) {
+//		this.idComodidade = idComodidade;
+//	}
 
 }

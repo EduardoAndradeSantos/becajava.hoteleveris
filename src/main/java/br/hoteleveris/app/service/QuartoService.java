@@ -1,15 +1,17 @@
 package br.hoteleveris.app.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.hoteleveris.app.model.Quarto;
 import br.hoteleveris.app.model.TipoQuarto;
+
 import br.hoteleveris.app.repository.QuartoRepository;
 import br.hoteleveris.app.request.QuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
+import br.hoteleveris.app.response.ListQuartoResponse;
 import br.hoteleveris.app.response.QuartoResponse;
 
 @Service
@@ -17,17 +19,22 @@ public class QuartoService {
 
 	@Autowired
 	QuartoRepository _repository;
+//	@Autowired
+//	ComodidadeRepository _tipoquartorepository;
 
-	// INSERIR UM QUARTO
+	// INSERIR UM QUARTO (FUNCIONA, MAS FALTA COMODIDADES)
 	public BaseResponse criar(QuartoRequest request) {
 		BaseResponse response = new BaseResponse();
 		response.statusCode = 400;
 
 		if (request.getAndar() <= 0) {
-			response.message = " não pode ser vazia ou zero";
+			response.message = "Andar não pode ser vazio ou zero";
 			return response;
 		} else if (request.getNumero() <= 0) {
-			response.message = " não pode ser vazio ou zero";
+			response.message = "Numero não pode ser vazio ou zero";
+			return response;
+		} else if (request.getSituacao().isEmpty()) {
+			response.message = "Situação não pode ser vazio";
 			return response;
 		}
 
@@ -41,6 +48,9 @@ public class QuartoService {
 		obj.setId(request.getIdTipoQuarto());
 		quarto.setTipoQuarto(obj);
 
+//		// pegar id de comodidade da many to many
+//		quarto.setComodidade(request.getComodidade());
+
 		_repository.save(quarto);
 
 		response.message = "Quarto criado com sucesso!";
@@ -49,7 +59,7 @@ public class QuartoService {
 		return response;
 	}
 
-// OBTER UM QUARTO
+	// OBTER UM QUARTO (FUNCIONA, MAS FALTA OBTER COMODIDADES)
 	public QuartoResponse obter(Long id) {
 		Optional<Quarto> quarto = _repository.findById(id);
 
@@ -71,8 +81,18 @@ public class QuartoService {
 		response.message = "Tipo de quarto obtido com sucesso.";
 		return response;
 	}
+
+	// OBTER LISTA DE QUARTOS (FUNCIONA, MAS FALTA COISA)
+	public ListQuartoResponse listar() {
+
+		List<Quarto> lista = _repository.findAll();
+
+		ListQuartoResponse response = new ListQuartoResponse();
+		response.setQuarto(lista);
+		response.statusCode = 200;
+		response.message = "Quartos obtidos com sucesso.";
+
+		return response;
+	}
 }
-
-// OBTER LISTA DE QUARTOS
-
 // ATUALIZAR APENAS SITUAÇÃO DO QUARTO (utilizar o verbo PATCH do Rest)

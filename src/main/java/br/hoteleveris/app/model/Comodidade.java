@@ -20,8 +20,8 @@ public class Comodidade {
 	
 	@ManyToMany
 	@JoinTable(name = "QuartoComodidade", 
-	inverseJoinColumns = @JoinColumn(name = "comodidadeId"),
-	joinColumns = @JoinColumn(name = "quartoId"))
+	inverseJoinColumns = @JoinColumn(name = "quartoId"),
+	joinColumns = @JoinColumn(name = "comodidadeId"))
 	Set<Quarto> quarto;
 
 

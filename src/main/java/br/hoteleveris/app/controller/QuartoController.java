@@ -37,17 +37,17 @@ public class QuartoController extends BaseController{
 		}
 	}
 	
-//	// GET - OBTER LISTA DE TODOS OS QUARTOS
-//		@GetMapping
-//		public ResponseEntity<BaseResponse> listar() {
-//			try {
-//				BaseResponse response = _service.listar();
-//				return ResponseEntity.status(response.statusCode).body(response);
-//			} catch (Exception e) {
-//				return ResponseEntity.status(errorBase.statusCode).body(errorBase);
-//			}
-//		}
-//		
+	// GET - OBTER LISTA DE TODOS OS QUARTOS
+		@GetMapping
+		public ResponseEntity<BaseResponse> listar() {
+			try {
+				BaseResponse response = _service.listar();
+				return ResponseEntity.status(response.statusCode).body(response);
+			} catch (Exception e) {
+				return ResponseEntity.status(errorBase.statusCode).body(errorBase);
+			}
+		}
+		
 //	 ATUALIZAR APENAS SITUAÇÃO DO QUARTO (utilizar o verbo PATCH do Rest)
 
 }

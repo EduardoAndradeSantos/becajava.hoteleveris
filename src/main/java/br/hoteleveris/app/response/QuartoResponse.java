@@ -6,6 +6,7 @@ public class QuartoResponse extends BaseResponse {
 	private int numero;
 	private String situacao;
 	private Long idTipoQuarto;
+	private Long idComodidade;
 
 	public Long getId() {
 		return id;
@@ -45,6 +46,14 @@ public class QuartoResponse extends BaseResponse {
 
 	public void setIdTipoQuarto(Long idTipoQuarto) {
 		this.idTipoQuarto = idTipoQuarto;
+	}
+
+	public Long getIdComodidade() {
+		return idComodidade;
+	}
+
+	public void setIdComodidade(Long idComodidade) {
+		this.idComodidade = idComodidade;
 	}
 
 }
