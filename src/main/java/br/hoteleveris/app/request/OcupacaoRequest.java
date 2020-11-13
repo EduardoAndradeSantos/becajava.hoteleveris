@@ -5,7 +5,7 @@ public class OcupacaoRequest {
 	private int diaria;
 	private String situacaoPagamento;
 	private Long clienteId;
-	private Long QuartoId;
+	private Long quartoId;
 
 	public String getData() {
 		return data;
@@ -40,11 +40,11 @@ public class OcupacaoRequest {
 	}
 
 	public Long getQuartoId() {
-		return QuartoId;
+		return quartoId;
 	}
 
 	public void setQuartoId(Long quartoId) {
-		QuartoId = quartoId;
+		this.quartoId = quartoId;
 	}
 
 }

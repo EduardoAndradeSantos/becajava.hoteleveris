@@ -9,7 +9,7 @@ import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.service.TipoQuartoService;
 
 @RestController
-@RequestMapping("/tipoquarto")
+@RequestMapping("/tipoquartos")
 public class TipoQuartoController extends BaseController {
 
 	@Autowired
