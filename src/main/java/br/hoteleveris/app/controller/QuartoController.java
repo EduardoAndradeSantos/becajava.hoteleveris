@@ -2,9 +2,11 @@ package br.hoteleveris.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import br.hoteleveris.app.request.QuartoRequest;
+import br.hoteleveris.app.request.SituacaoQuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.service.QuartoService;
 
@@ -49,5 +51,16 @@ public class QuartoController extends BaseController {
 	}
 
 //	 ATUALIZAR APENAS SITUAÇÃO DO QUARTO (utilizar o verbo PATCH do Rest)
+	@PatchMapping("/{id}")
+	public ResponseEntity<BaseResponse> atualizar(@Validated @PathVariable("id") Long id,
+			@RequestBody SituacaoQuartoRequest request) {
 
+		try {
+			BaseResponse response = _service.atualizar(id, request);
+			return ResponseEntity.status(response.statusCode).body(response);
+		} catch (Exception e) {
+			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
+		}
+
+	}
 }

@@ -47,12 +47,12 @@ public class OcupacaoService {
 			ocupa.setSituacaoPagamento("N");
 		}
 
-		// Colocar id de response em um ManyToOne do id Cliente
+		// COLOCAR ID DE RESPONSE EM UM MANYTOONE DO ID CLIENTE
 		Cliente obj = new Cliente();
 		obj.setId(request.getClienteId());
 		ocupa.setCliente(obj);
 
-		// Colocar id de response em um ManyToOne do id Quarto
+		// COLOCAR ID DE RESPONSE EM UM MANYTOONE DO ID QUARTO
 		Quarto obj2 = new Quarto();
 		obj2.setId(request.getQuartoId());
 		ocupa.setQuarto(obj2);
@@ -65,7 +65,7 @@ public class OcupacaoService {
 		return response;
 	}
 
-	// OBTER TODOS OS TIPOS DE QUARTO
+	// OBTER TODAS AS OCUPACOES
 	public ListOcupacaoResponse listar() {
 
 		List<Ocupacao> lista = _repository.findAll();

@@ -12,6 +12,7 @@ import br.hoteleveris.app.model.TipoQuarto;
 
 import br.hoteleveris.app.repository.QuartoRepository;
 import br.hoteleveris.app.request.QuartoRequest;
+import br.hoteleveris.app.request.SituacaoQuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ListQuartoResponse;
 import br.hoteleveris.app.response.QuartoResponse;
@@ -97,5 +98,31 @@ public class QuartoService {
 		return response;
 	}
 
-	// ATUALIZAR APENAS SITUAÇÃO DO QUARTO (utilizar o verbo PATCH do Rest)
+	// ATUALIZAR APENAS SITUAÇÃO DO QUARTO (USANDO PATCH DO REST)
+	public BaseResponse atualizar(Long id, SituacaoQuartoRequest request) {
+		BaseResponse response = new BaseResponse();
+
+		Optional<Quarto> quarto = _repository.findById(id);
+
+		if (request.getSituacao().isEmpty()) {
+			response.statusCode = 400;
+			response.message = "Situação do quarto não pode ser vazia";
+			return response;
+		} else if (quarto.isEmpty() || id <= 0) {
+			response.statusCode = 400;
+			response.message = "Id do quarto não pode ser zero ou vazio";
+			return response;
+		}
+
+		quarto.get().setSituacao(request.getSituacao());
+
+		_repository.save(quarto.get());
+
+		response.message = "Situação do quarto atualizado com sucesso";
+		response.statusCode = 200;
+
+		return response;
+
+	}
+
 }
