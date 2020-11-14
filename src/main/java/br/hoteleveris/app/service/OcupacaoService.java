@@ -73,7 +73,7 @@ public class OcupacaoService {
 		ListOcupacaoResponse response = new ListOcupacaoResponse();
 		response.setOcupacoes(lista);
 		response.statusCode = 200;
-		response.message = "Clientes obtidos com sucesso.";
+		response.message = "Ocupações obtidas com sucesso.";
 
 		return response;
 	}

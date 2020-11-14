@@ -11,6 +11,23 @@ public class Comodidade {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	
+	public Comodidade() {
+		
+	}
+	
+	//CONSTRUTOR SO PARA ID E NOME
+	public Comodidade(Long id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+
+	//CONSTRUTOR SO PARA ID
+	public Comodidade(Long id) {
+		super();
+		this.id = id;
+	}
 
 	public Long getId() {
 		return id;

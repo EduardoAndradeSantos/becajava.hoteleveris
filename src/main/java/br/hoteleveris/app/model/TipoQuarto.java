@@ -12,6 +12,31 @@ public class TipoQuarto {
 	private Long id;
 	private String descricao;
 	private Double valor;
+	
+	public TipoQuarto() {
+		
+	}
+	
+	//CONSTRUTOR
+	public TipoQuarto(String descricao, Double valor) {
+		super();
+		this.descricao = descricao;
+		this.valor = valor;
+	}
+	
+	public TipoQuarto(Long id, String descricao, Double valor) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.valor = valor;
+	}
+
+
+
+	public TipoQuarto(Long id) {
+		super();
+		this.id = id;
+	}
 
 	public Long getId() {
 		return id;

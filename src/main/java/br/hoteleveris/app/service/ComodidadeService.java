@@ -13,10 +13,10 @@ import br.hoteleveris.app.response.ComodidadeResponse;
 
 @Service
 public class ComodidadeService {
-	
+
 	@Autowired
 	ComodidadeRepository _repository;
-	
+
 	// CRIAR UM TIPO DE QUARTO
 	public BaseResponse criar(ComodidadeRequest request) {
 		BaseResponse response = new BaseResponse();
@@ -27,8 +27,9 @@ public class ComodidadeService {
 			return response;
 		}
 
-		Comodidade comodidade = new Comodidade();
-		comodidade.setNome(request.getNome());
+		Comodidade comodidade = new Comodidade(
+				request.getId(), 
+				request.getNome());
 
 		_repository.save(comodidade);
 
@@ -52,7 +53,7 @@ public class ComodidadeService {
 
 		response.setId(comodidade.get().getId());
 		response.setNome(comodidade.get().getNome());
-		
+
 		response.statusCode = 200;
 		response.message = "Tipo de quarto obtido com sucesso.";
 		return response;

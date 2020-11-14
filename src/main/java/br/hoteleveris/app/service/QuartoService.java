@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import br.hoteleveris.app.model.Comodidade;
 import br.hoteleveris.app.model.Quarto;
+import br.hoteleveris.app.model.QuartoComodidade;
 import br.hoteleveris.app.model.TipoQuarto;
-
+import br.hoteleveris.app.repository.QuartoComodidadeRepository;
 import br.hoteleveris.app.repository.QuartoRepository;
+import br.hoteleveris.app.request.ComodidadeRequest;
 import br.hoteleveris.app.request.QuartoRequest;
 import br.hoteleveris.app.request.SituacaoQuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
@@ -21,9 +23,12 @@ import br.hoteleveris.app.response.QuartoResponse;
 public class QuartoService {
 
 	@Autowired
-	QuartoRepository _repository;
+	private QuartoRepository _repository;
+	
+	@Autowired
+	private QuartoComodidadeRepository quartoComodidadeRepository;
 
-	// INSERIR UM QUARTO (FUNCIONA, MAS FALTA COMODIDADES)
+	// INSERIR UM QUARTO COM COMODIDADES
 	public BaseResponse criar(QuartoRequest request) {
 		BaseResponse response = new BaseResponse();
 		response.statusCode = 400;
@@ -35,30 +40,34 @@ public class QuartoService {
 			response.message = "Numero não pode ser vazio ou zero";
 			return response;
 		} else if (request.getSituacao().isEmpty()) {
-			response.message = "Situação não pode ser vazio";
+			response.message = "Situação não pode ser vazia";
 			return response;
 		}
-
-		Quarto quarto = new Quarto();
-		quarto.setAndar(request.getAndar());
-		quarto.setNumero(request.getNumero());
-		quarto.setSituacao(request.getSituacao());
-
-		// Colocar id em um ManyToOne
-		TipoQuarto obj = new TipoQuarto();
-		obj.setId(request.getIdTipoQuarto());
-		quarto.setTipoQuarto(obj);
-
-		// colocar id em um ManyToOne PROBLEMA POR SER LISTA
-//		Comodidade obj2 = new Comodidade();
-//		obj2.setId(request.getIdComodidade());
-//		quarto.setComodidade(obj2);
+		
+		TipoQuarto tipoQuarto = new TipoQuarto(request.getIdTipoQuarto());
+		
+		Quarto quarto = new Quarto(
+				request.getAndar(), 
+				request.getNumero(), 
+				request.getSituacao(), 
+				tipoQuarto);
 
 		_repository.save(quarto);
+		
+		Long idQuarto = _repository.findByNumero(request.getNumero()).get().getId();
 
+		for (ComodidadeRequest objeto : request.getComodidades()) {
+			
+			QuartoComodidade quartoComodidade = new QuartoComodidade(
+					new Comodidade(objeto.getId()), 
+					new Quarto(idQuarto)
+					);
+			
+			quartoComodidadeRepository.save(quartoComodidade);
+		}
+		
 		response.message = "Quarto criado com sucesso!";
 		response.statusCode = 200;
-
 		return response;
 	}
 

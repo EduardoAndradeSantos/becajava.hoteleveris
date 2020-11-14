@@ -14,6 +14,10 @@ public class Cliente {
 	private String cpf;
 	private String hash;
 	
+	public Cliente() {
+		
+	}
+	
 	public Long getId() {
 		return id;
 	}

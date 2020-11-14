@@ -12,6 +12,10 @@ public class QuartoComodidade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	public QuartoComodidade() {
+		
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "comodidadeId")
@@ -20,6 +24,19 @@ public class QuartoComodidade {
 	@ManyToOne
 	@JoinColumn(name = "quartoId")
 	private Quarto quarto;
+
+	// CONTRUTOR QUE SÓ PEGA QUARTO E COMODIDADE
+	public QuartoComodidade(Comodidade comodidade, Quarto quarto) {
+		super();
+		this.comodidade = comodidade;
+		this.quarto = quarto;
+	}
+	
+	//CONSTRUTOR QUE SÓ PEGA ID
+	public QuartoComodidade(Long id) {
+		super();
+		this.id = id;
+	}
 
 	public Long getId() {
 		return id;

@@ -16,6 +16,10 @@ public class Ocupacao {
 	private int diaria;
 	private String situacaoPagamento;
 	
+	public Ocupacao() {
+		
+	}
+	
 	@ManyToOne
 	@JoinColumn(name = "clienteId")
 	private Cliente cliente;

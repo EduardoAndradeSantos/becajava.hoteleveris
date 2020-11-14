@@ -7,7 +7,8 @@ public class QuartoRequest {
 	private int numero;
 	private String situacao;
 	private Long idTipoQuarto;
-	private List<QuartoComodidadeRequest> idComodidade;
+
+	private List<ComodidadeRequest> comodidades;
 
 	public int getAndar() {
 		return andar;
@@ -41,12 +42,12 @@ public class QuartoRequest {
 		this.idTipoQuarto = idTipoQuarto;
 	}
 
-	public List<QuartoComodidadeRequest> getIdComodidade() {
-		return idComodidade;
+	public List<ComodidadeRequest> getComodidades() {
+		return comodidades;
 	}
 
-	public void setIdComodidade(List<QuartoComodidadeRequest> idComodidade) {
-		this.idComodidade = idComodidade;
+	public void setComodidades(List<ComodidadeRequest> comodidades) {
+		this.comodidades = comodidades;
 	}
 
 }

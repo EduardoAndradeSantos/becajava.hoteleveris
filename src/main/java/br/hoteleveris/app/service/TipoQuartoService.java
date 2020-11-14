@@ -32,9 +32,9 @@ public class TipoQuartoService {
 			return response;
 		}
 
-		TipoQuarto tq = new TipoQuarto();
-		tq.setDescricao(request.getDescricao());
-		tq.setValor(request.getValor());
+		TipoQuarto tq = new TipoQuarto(
+				request.getDescricao(), 
+				request.getValor());
 
 		_repository.save(tq);
 
