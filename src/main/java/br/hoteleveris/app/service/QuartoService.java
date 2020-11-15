@@ -112,7 +112,7 @@ public class QuartoService {
 		BaseResponse response = new BaseResponse();
 
 		Optional<Quarto> quarto = _repository.findById(id);
-
+ 
 		if (request.getSituacao().isEmpty()) {
 			response.statusCode = 400;
 			response.message = "Situação do quarto não pode ser vazia";

@@ -9,6 +9,7 @@ public class QuartoRequest {
 	private Long idTipoQuarto;
 
 	private List<ComodidadeRequest> comodidades;
+	
 
 	public int getAndar() {
 		return andar;
@@ -48,6 +49,6 @@ public class QuartoRequest {
 
 	public void setComodidades(List<ComodidadeRequest> comodidades) {
 		this.comodidades = comodidades;
-	}
+	}	
 
 }
