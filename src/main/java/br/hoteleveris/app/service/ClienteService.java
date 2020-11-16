@@ -22,13 +22,13 @@ public class ClienteService {
 		BaseResponse response = new BaseResponse();
 		response.statusCode = 400;
 
-		if (request.getNome().isEmpty()) {
+		if (request.getNome() == "" || request.getNome() == null) {
 			response.message = "O nome não pode ser vazio";
 			return response;
-		} else if (request.getCpf().isEmpty()) {
+		} else if (request.getCpf() == "" || request.getCpf() == null) {
 			response.message = "O cpf não pode ser vazio";
 			return response;
-		} else if (request.getHash().isEmpty()) {
+		} else if (request.getHash() == "" || request.getHash() == null) {
 			response.message = "o hash não pode ser vazio";
 			return response;
 		}
@@ -41,7 +41,7 @@ public class ClienteService {
 		_repository.save(cliente);
 
 		response.message = "Cliente criado com sucesso!";
-		response.statusCode = 200;
+		response.statusCode = 201;
 
 		return response;
 	}
@@ -52,7 +52,7 @@ public class ClienteService {
 
 		ClienteResponse response = new ClienteResponse();
 
-		if (cliente.get().getId() == 0) {
+		if (cliente.isEmpty()) {
 			response.statusCode = 400;
 			response.message = "Id não encontrado.";
 			return response;

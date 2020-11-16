@@ -24,7 +24,7 @@ public class TipoQuartoService {
 		BaseResponse response = new BaseResponse();
 		response.statusCode = 400;
 
-		if (request.getDescricao().isEmpty()) {
+		if (request.getDescricao().isEmpty() || request.getDescricao() == "") {
 			response.message = "A descricao não pode ser vazia";
 			return response;
 		} else if (request.getValor() <= 0) {
@@ -32,14 +32,18 @@ public class TipoQuartoService {
 			return response;
 		}
 
-		TipoQuarto tq = new TipoQuarto(
-				request.getDescricao(), 
-				request.getValor());
+		TipoQuarto tq = new TipoQuarto();
+		tq.setDescricao(request.getDescricao());
+		tq.setValor(request.getValor());
+		
+//		TipoQuarto tq = new TipoQuarto(
+//				request.getDescricao(), 
+//				request.getValor());
 
 		_repository.save(tq);
 
 		response.message = "Tipo de quarto criado com sucesso!";
-		response.statusCode = 200;
+		response.statusCode = 201;
 
 		return response;
 	}
@@ -50,7 +54,7 @@ public class TipoQuartoService {
 
 		TipoQuartoResponse response = new TipoQuartoResponse();
 
-		if (tq.get().getId() == 0) {
+		if (tq.isEmpty()) {
 			response.statusCode = 400;
 			response.message = "Id não encontrado.";
 			return response;

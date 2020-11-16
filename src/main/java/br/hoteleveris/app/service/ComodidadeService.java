@@ -22,7 +22,7 @@ public class ComodidadeService {
 		BaseResponse response = new BaseResponse();
 		response.statusCode = 400;
 
-		if (request.getNome().isEmpty()) {
+		if (request.getNome() == null || request.getNome() == "") {
 			response.message = "A comodidade não pode ser vazia";
 			return response;
 		}
@@ -34,7 +34,7 @@ public class ComodidadeService {
 		_repository.save(comodidade);
 
 		response.message = "Nome da comodidade criada com sucesso!";
-		response.statusCode = 200;
+		response.statusCode = 201;
 
 		return response;
 	}
@@ -45,7 +45,7 @@ public class ComodidadeService {
 
 		ComodidadeResponse response = new ComodidadeResponse();
 
-		if (comodidade.get().getId() == 0) {
+		if (comodidade.isEmpty()) {
 			response.statusCode = 400;
 			response.message = "Id não encontrado.";
 			return response;

@@ -46,11 +46,21 @@ public class QuartoService {
 		
 		TipoQuarto tipoQuarto = new TipoQuarto(request.getIdTipoQuarto());
 		
-		Quarto quarto = new Quarto(
-				request.getAndar(), 
-				request.getNumero(), 
-				request.getSituacao(), 
-				tipoQuarto);
+		Quarto quarto = new Quarto();
+		quarto.setAndar(request.getAndar());
+        quarto.setNumero(request.getNumero());
+        quarto.setSituacao(request.getSituacao());
+
+
+        TipoQuarto tq = new TipoQuarto();
+        tq.setId(request.getIdTipoQuarto());
+        quarto.setTipoQuarto(tipoQuarto);
+		
+//		Quarto quarto = new Quarto(
+//				request.getAndar(), 
+//				request.getNumero(), 
+//				request.getSituacao(), 
+//				tipoQuarto);
 
 		_repository.save(quarto);
 		
@@ -67,7 +77,7 @@ public class QuartoService {
 		}
 		
 		response.message = "Quarto criado com sucesso!";
-		response.statusCode = 200;
+		response.statusCode = 201;
 		return response;
 	}
 
@@ -77,7 +87,8 @@ public class QuartoService {
 
 		QuartoResponse response = new QuartoResponse();
 
-		if (quarto.get().getId() == 0) {
+		//quarto.get().getId() <= 0
+		if (quarto.isEmpty()) {
 			response.statusCode = 400;
 			response.message = "Id não encontrado.";
 			return response;

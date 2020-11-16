@@ -24,16 +24,16 @@ public class OcupacaoService {
 		BaseResponse response = new BaseResponse();
 		response.statusCode = 400;
 
-		if (request.getData().isEmpty()) {
+		if (request.getData() == "" || request.getData() == null) {
 			response.message = "Data não pode ser vazia";
 			return response;
 		} else if (request.getDiaria() <= 0) {
 			response.message = "Quatidade de diarias não pode zer 0 ou vazia";
 			return response;
-		} else if (request.getQuartoId() <= 0) {
+		} else if (request.getQuartoId() <= 0 || request.getQuartoId() == null) {
 			response.message = "Id de quarto precisa ser inserido";
 			return response;
-		} else if (request.getClienteId() <= 0) {
+		} else if (request.getClienteId() <= 0 || request.getClienteId() == null) {
 			response.message = "Id de cliente precisa ser inserido";
 			return response;
 		}
@@ -60,7 +60,7 @@ public class OcupacaoService {
 		_repository.save(ocupa);
 
 		response.message = "Tipo de quarto criado com sucesso!";
-		response.statusCode = 200;
+		response.statusCode = 201;
 
 		return response;
 	}
