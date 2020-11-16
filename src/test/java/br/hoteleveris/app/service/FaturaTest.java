@@ -13,8 +13,15 @@ public class FaturaTest {
 	@Autowired
 	private FaturaService service;
 	
+	@Test
+	 public void fazTransferenciaComDevedores() {
+		BaseResponse response = service.transferencia();
+		Assertions.assertEquals(200,response.getStatusCode());
+	}
+	
 //	@Test
-//	 public void fazTransferencia() {
-//		Assertions.assertEquals(200,"Faturas inseridas com sucesso");
+//	 public void fazTransferenciaSemDevedores() {
+//		BaseResponse response = service.transferencia();
+//		Assertions.assertEquals(400,response.getStatusCode());
 //	}
 }

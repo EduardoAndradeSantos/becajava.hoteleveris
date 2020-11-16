@@ -39,7 +39,7 @@ public class QuartoService {
 		} else if (request.getNumero() <= 0) {
 			response.message = "Numero não pode ser vazio ou zero";
 			return response;
-		} else if (request.getSituacao().isEmpty()) {
+		} else if (request.getSituacao() == null || request.getSituacao() == "") {
 			response.message = "Situação não pode ser vazia";
 			return response;
 		}
@@ -51,16 +51,9 @@ public class QuartoService {
         quarto.setNumero(request.getNumero());
         quarto.setSituacao(request.getSituacao());
 
-
         TipoQuarto tq = new TipoQuarto();
         tq.setId(request.getIdTipoQuarto());
         quarto.setTipoQuarto(tipoQuarto);
-		
-//		Quarto quarto = new Quarto(
-//				request.getAndar(), 
-//				request.getNumero(), 
-//				request.getSituacao(), 
-//				tipoQuarto);
 
 		_repository.save(quarto);
 		
@@ -124,7 +117,7 @@ public class QuartoService {
 
 		Optional<Quarto> quarto = _repository.findById(id);
  
-		if (request.getSituacao().isEmpty()) {
+		if (request.getSituacao() == null || request.getSituacao() == "") {
 			response.statusCode = 400;
 			response.message = "Situação do quarto não pode ser vazia";
 			return response;

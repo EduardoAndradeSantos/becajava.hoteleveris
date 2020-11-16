@@ -6,22 +6,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.service.FaturaService;
 
 @RestController
 @RequestMapping("/faturas")
-public class FaturaController {
+public class FaturaController extends BaseController {
 
 	@Autowired
 	private FaturaService _service;
 
 	@PostMapping
-	public ResponseEntity inserir() {
+	public ResponseEntity<BaseResponse> inserir() {
 		try {
-			_service.inserir();
-			return ResponseEntity.status(200).body("Faturas inseridas com sucesso");
+			BaseResponse response = _service.transferencia();
+			return ResponseEntity.status(response.statusCode).body(response);
 		} catch (Exception e) {
-			return ResponseEntity.status(500).body("Erro genérico");
+			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 		}
 	}
 
