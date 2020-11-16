@@ -58,7 +58,7 @@ public class TipoQuartoTest {
 		obj.setTipoQuarto(obj.getTipoQuarto());
 
 		BaseResponse response = service.listar();
-		Assertions.assertEquals(200, obj.getStatusCode());
+		Assertions.assertEquals(200, response.getStatusCode());
 	}
 	
 	@Test

@@ -125,7 +125,7 @@ public class OcupacaoTest {
 	obj.setOcupacoes(obj.getOcupacoes());
 	
 	BaseResponse response = service.listar();
-	Assertions.assertEquals(200,obj.getStatusCode());
+	Assertions.assertEquals(200,response.getStatusCode());
 	}
 	
 }
