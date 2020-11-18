@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import br.hoteleveris.app.request.ClienteRequest;
 import br.hoteleveris.app.response.BaseResponse;
-import br.hoteleveris.app.response.ClienteResponse;
 
 @SpringBootTest
 public class ClienteTest {

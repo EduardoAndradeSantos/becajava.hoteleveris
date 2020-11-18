@@ -13,12 +13,13 @@ import br.hoteleveris.app.request.ComodidadeRequest;
 import br.hoteleveris.app.request.QuartoRequest;
 import br.hoteleveris.app.request.SituacaoQuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
+import br.hoteleveris.app.service.implement.QuartoServiceImp;
 
 @SpringBootTest
 public class QuartoTest {
 
 		@Autowired
-		private QuartoService service;
+		private QuartoServiceImp service;
 
 		public int getNumeroRandomico(int min, int max) {
 			Random random = new Random();
