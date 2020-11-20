@@ -19,7 +19,7 @@ public class FaturaServiceImp implements FaturaService {
 	private OcupacaoRepository ocupacaoRepository;
 
 	// PROPRIEDADES
-	private String hashContaHotel = "H0T3L3V3R1S";
+	private String hashContaHotel = "ceb0f8c7-8a8f-4b08-af91-52511756f8a8";
 
 	// METODO DE INSERIR FATURA
 	public BaseResponse transferencia() {
@@ -45,7 +45,8 @@ public class FaturaServiceImp implements FaturaService {
 			objtransferencia.setHashOrigem(ocupacao.getCliente().getHash());
 			objtransferencia.setValor(valor);
 
-			restTemplate.postForObject(uri, objtransferencia, BaseResponse.class);
+			BaseResponse requisicaoResponse  = restTemplate.postForObject(uri, objtransferencia, BaseResponse.class);
+			//mudar essa parte.
 
 			ocupacao.setSituacaoPagamento("P");
 			ocupacaoRepository.save(ocupacao);
